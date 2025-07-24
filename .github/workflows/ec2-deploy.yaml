@@ -40,9 +40,9 @@ jobs:
             sudo systemctl enable apache2
             # Remove existing contents of /var/www/html
             sudo rm -rf /var/www/html/*
-            # Copy organized files to /var/www/html
-            sudo cp -r home/src/* /var/www/html/
-            sudo cp -r home/assets /var/www/html/
+            # Copy files to web root
+            sudo cp ${{ vars.TARGET_DIR }}/src/index.html /var/www/html/
+            sudo cp -r ${{ vars.TARGET_DIR }}/assets /var/www/html/
             # Set proper permissions
             sudo chown -R www-data:www-data /var/www/html
             sudo chmod -R 755 /var/www/html
