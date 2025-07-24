@@ -1,49 +1,46 @@
-# 🚀 DevOps Portfolio - AWS EC2 Deployment
+# 🚀 DevOps CI/CD Pipeline - AWS EC2 Deployment
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+[![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white)](https://aws.amazon.com/ec2/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white)](https://httpd.apache.org/)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/)
+[![SSH](https://img.shields.io/badge/SSH-4D4D4D?style=for-the-badge&logo=openssh&logoColor=white)](https://www.openssh.com/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-326CE5?style=for-the-badge&logo=gitlab&logoColor=white)](https://about.gitlab.com/topics/ci-cd/)
+[![Infrastructure](https://img.shields.io/badge/Infrastructure-FF6B35?style=for-the-badge&logo=terraform&logoColor=white)](https://www.terraform.io/)
 
-> A modern, responsive portfolio website for a DevOps Engineer with automated CI/CD deployment to AWS EC2 using GitHub Actions.
+> **DevOps Project**: Automated CI/CD pipeline demonstrating Infrastructure as Code, continuous deployment, and cloud automation using GitHub Actions and AWS EC2.
 
 ## 📋 Table of Contents
 
-- [🌟 Features](#-features)
-- [🏗️ Project Structure](#️-project-structure)
-- [🚀 Quick Start](#-quick-start)
-- [⚙️ Deployment](#️-deployment)
-- [📱 Mobile Optimization](#-mobile-optimization)
-- [🛠️ Technologies](#️-technologies)
-- [📊 Performance](#-performance)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+- [🔧 DevOps Features](#-devops-features)
+- [🏗️ Infrastructure](#️-infrastructure)
+- [⚙️ CI/CD Pipeline](#️-cicd-pipeline)
+- [🚀 Deployment Strategy](#-deployment-strategy)
+- [📊 Monitoring & Observability](#-monitoring--observability)
+- [🛠️ DevOps Tools](#️-devops-tools)
+- [🔒 Security & Best Practices](#-security--best-practices)
 
-## 🌟 Features
+## 🔧 DevOps Features
 
-### ✨ Design & UX
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Modern Animations**: Smooth CSS animations and JavaScript interactions
-- **Professional Layout**: Clean, modern design showcasing DevOps expertise
-- **Interactive Elements**: Hover effects, smooth scrolling, and typing animations
-- **Accessibility**: WCAG compliant with keyboard navigation and screen reader support
+### 🚀 CI/CD Pipeline
+- **Automated Deployment**: GitHub Actions triggers on push to main branch
+- **Infrastructure Provisioning**: Automated Apache web server setup
+- **Configuration Management**: Automated file deployment and permissions
+- **Zero-Downtime Strategy**: Atomic file replacement during deployment
 
-### 🔧 Technical Features
-- **Progressive Enhancement**: Works without JavaScript, enhanced with it
-- **Performance Optimized**: Lazy loading, optimized images, and minimal dependencies
-- **SEO Friendly**: Semantic HTML, meta tags, and structured data
-- **Cross-browser Compatible**: Tested on Chrome, Firefox, Safari, and Edge
+### 🏗️ Infrastructure as Code
+- **Declarative Configuration**: YAML-based GitHub Actions workflow
+- **Idempotent Operations**: Safe to run multiple times without side effects
+- **Environment Consistency**: Same deployment process across environments
+- **Version Control**: All infrastructure changes tracked in Git
 
-### 🚀 DevOps Features
-- **Automated CI/CD**: GitHub Actions workflow for seamless deployment
-- **Infrastructure as Code**: Automated server setup and configuration
-- **Zero-downtime Deployment**: Blue-green deployment strategy
-- **Monitoring Ready**: Structured for easy integration with monitoring tools
+### 🔒 Security & Compliance
+- **SSH Key Authentication**: Secure server access using private keys
+- **Least Privilege Access**: Minimal required permissions for deployment
+- **Secrets Management**: GitHub Secrets for sensitive configuration
+- **File Permissions**: Proper ownership and access controls
 
-## 🏗️ Project Structure
+## 🏗️ Infrastructure
 
 ```
 deploy-webapp-ec2/
@@ -63,42 +60,34 @@ deploy-webapp-ec2/
 └── 📄 README.md                        # Project documentation
 ```
 
-## 🚀 Quick Start
+## ⚙️ CI/CD Pipeline
 
-### Prerequisites
+### Pipeline Architecture
 
-- Git installed on your machine
-- Web browser for local testing
-- AWS account with EC2 instance
-- GitHub account for CI/CD
+```yaml
+name: Deploy App to EC2
+on:
+  push:
+    branches: [main]
 
-### Local Development
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+      - name: Deploy to EC2
+      - name: Configure Infrastructure
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/deploy-webapp-ec2.git
-   cd deploy-webapp-ec2
-   ```
+### Pipeline Stages
 
-2. **Open locally**
-   ```bash
-   # Open in browser
-   open src/index.html
-   # Or use a local server
-   python -m http.server 8000
-   ```
+1. **Source Control**: Code checkout from GitHub repository
+2. **Build**: No build step required for static assets
+3. **Deploy**: SSH-based file transfer to EC2 instance
+4. **Configure**: Apache installation and configuration
+5. **Verify**: Service health checks and permissions
 
-3. **Make changes**
-   - Edit `src/index.html` for content
-   - Modify `assets/css/style.css` for styling
-   - Update `assets/js/main.js` for functionality
-
-4. **Test responsiveness**
-   - Use browser dev tools
-   - Test on multiple devices
-   - Validate HTML and CSS
-
-## ⚙️ Deployment
+## 🚀 Deployment Strategy
 
 ### AWS EC2 Setup
 
@@ -158,83 +147,106 @@ graph LR
     G --> H[Live Website]
 ```
 
-## 📱 Mobile Optimization
+## 📊 Monitoring & Observability
 
-### Responsive Breakpoints
-- **Desktop**: > 768px
-- **Tablet**: 481px - 768px
-- **Mobile**: ≤ 480px
-
-### Mobile Features
-- Touch-friendly navigation
-- Optimized font sizes
-- Compressed images
-- Reduced animations
-- Improved scrolling
-
-### Performance Metrics
-- **Lighthouse Score**: 95+
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-
-## 🛠️ Technologies
-
-### Frontend
-- **HTML5**: Semantic markup and accessibility
-- **CSS3**: Modern styling with Flexbox and Grid
-- **JavaScript**: ES6+ for interactivity
-- **Google Fonts**: Inter font family
-
-### Backend & Infrastructure
-- **Apache HTTP Server**: Web server
-- **Ubuntu 22.04**: Operating system
-- **AWS EC2**: Cloud hosting
-- **GitHub Actions**: CI/CD pipeline
-
-### Development Tools
-- **Git**: Version control
-- **GitHub**: Code repository and CI/CD
-- **VS Code**: Recommended editor
-- **Browser DevTools**: Testing and debugging
-
-## 📊 Performance
-
-### Optimization Techniques
-- **CSS**: Minification and critical path optimization
-- **JavaScript**: Lazy loading and code splitting
-- **Images**: WebP format and responsive images
-- **Caching**: Browser caching headers
-
-### Monitoring
+### Infrastructure Monitoring
 ```bash
-# Check website status
-curl -I http://your-ec2-ip
+# System Health Checks
+sudo systemctl status apache2
+sudo journalctl -u apache2 -f
 
-# Monitor Apache logs
-sudo tail -f /var/log/apache2/access.log
-
-# Check system resources
+# Resource Monitoring
 htop
+df -h
+free -m
+
+# Network Monitoring
+ss -tulpn | grep :80
+curl -I http://your-ec2-ip
 ```
 
-## 🔧 Customization
+### Log Management
+```bash
+# Apache Access Logs
+sudo tail -f /var/log/apache2/access.log
 
-### Content Updates
-1. **Personal Information**: Edit `src/index.html`
-2. **Styling**: Modify `assets/css/style.css`
-3. **Functionality**: Update `assets/js/main.js`
-4. **Images**: Replace files in `assets/images/`
+# Apache Error Logs
+sudo tail -f /var/log/apache2/error.log
 
-### Color Scheme
-```css
-:root {
-  --primary-color: #2a5298;
-  --secondary-color: #4299e1;
-  --accent-color: #00ffff;
-  --text-color: #1a1a1a;
-  --background: #ffffff;
-}
+# System Logs
+sudo journalctl -xe
+```
+
+## 🛠️ DevOps Tools
+
+### Cloud Infrastructure
+- **AWS EC2**: Compute instances for hosting
+- **Security Groups**: Network access control
+- **SSH Key Pairs**: Secure authentication
+
+### CI/CD Tools
+- **GitHub Actions**: Automated deployment pipeline
+- **SSH Deploy Action**: Secure file transfer
+- **GitHub Secrets**: Credential management
+
+### Server Management
+- **Apache HTTP Server**: Production web server
+- **Ubuntu 22.04 LTS**: Stable Linux distribution
+- **systemd**: Service management
+- **SSH**: Secure remote administration
+
+## 🔒 Security & Best Practices
+
+### Security Measures
+- **SSH Key Authentication**: No password-based access
+- **GitHub Secrets**: Encrypted credential storage
+- **Least Privilege**: Minimal required permissions
+- **Security Groups**: Network-level access control
+
+### DevOps Best Practices
+- **Infrastructure as Code**: All changes version controlled
+- **Automated Deployment**: Consistent, repeatable deployments
+- **Idempotent Operations**: Safe to run multiple times
+- **Monitoring & Logging**: Comprehensive observability
+
+### Operational Excellence
+```bash
+# Security Updates
+sudo apt update && sudo apt upgrade -y
+
+# Service Health
+sudo systemctl is-active apache2
+
+# Disk Space Monitoring
+df -h /var/www/html
+```
+
+## 🔄 Pipeline Customization
+
+### Environment Variables
+```yaml
+# GitHub Repository Variables
+EC2_USER: ubuntu          # SSH username
+TARGET_DIR: home         # Deployment directory
+
+# GitHub Repository Secrets
+EC2_SSH_KEY: |           # Private SSH key
+  -----BEGIN OPENSSH PRIVATE KEY-----
+  ...
+  -----END OPENSSH PRIVATE KEY-----
+HOST_DNS: 3.134.107.42   # EC2 public IP/DNS
+```
+
+### Workflow Customization
+```yaml
+# Add environment-specific deployments
+strategy:
+  matrix:
+    environment: [staging, production]
+    
+# Add health checks
+- name: Health Check
+  run: curl -f http://${{ secrets.HOST_DNS }} || exit 1
 ```
 
 ## 🤝 Contributing
