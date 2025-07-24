@@ -7,7 +7,7 @@ on:
 # env:
 #     TARGET: home
 #     EC2_USER: ubuntu
-#
+
 jobs:
   deploy:
     environment: prod
