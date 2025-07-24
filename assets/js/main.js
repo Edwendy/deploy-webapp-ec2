@@ -54,4 +54,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     images.forEach(img => imageObserver.observe(img));
+    
+    // Mobile-specific optimizations
+    if (window.innerWidth <= 768) {
+        // Reduce animation complexity on mobile
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.animationDuration = '0.4s';
+        });
+        
+        // Optimize touch interactions
+        document.querySelectorAll('.nav-link, .contact-item').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    }
+    
+    // Handle orientation changes
+    window.addEventListener('orientationchange', function() {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    });
 });

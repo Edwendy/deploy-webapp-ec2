@@ -649,61 +649,130 @@ body {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
     .name {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
     }
     
     .header {
-        padding: 40px 25px;
+        padding: 30px 20px;
+        margin-bottom: 25px;
     }
     
     .section {
-        padding: 30px 25px;
+        padding: 25px 20px;
+        margin-bottom: 20px;
     }
     
     .profile-section {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
     }
     
-    .profile-info {
-        text-align: center;
+    .headshot {
+        width: 100px;
+        height: 100px;
     }
     
     .nav {
         flex-direction: column;
-        align-items: center;
-        gap: 12px;
+        gap: 10px;
     }
     
     .nav-link {
-        width: 200px;
-        text-align: center;
+        width: 100%;
+        max-width: 250px;
+        padding: 14px 20px;
+        font-size: 1rem;
     }
     
-    .contact-info {
-        flex-direction: column;
+    .section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
     }
     
-    .skills, .projects {
-        grid-template-columns: 1fr;
-    }
-    
-    .project-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .challenge-content {
-        grid-template-columns: 1fr;
+    .intro {
+        font-size: 1rem;
+        line-height: 1.6;
     }
     
     .highlights {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+    }
+    
+    .highlight-item {
+        padding: 12px;
+    }
+    
+    .metric {
+        font-size: 1.5rem;
+    }
+    
+    .project-meta {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .project-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .tech-grid {
+        justify-content: center;
+        gap: 6px;
+    }
+    
+    .tech-item {
+        font-size: 0.8rem;
+        padding: 5px 10px;
     }
     
     .results-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .result-item {
+        padding: 15px;
+    }
+    
+    .result-number {
+        font-size: 2rem;
+    }
+    
+    .challenge-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .challenge, .solution {
+        padding: 15px;
+    }
+    
+    .skills, .projects {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .skill-item, .project-item {
+        padding: 20px;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .contact-item {
+        padding: 25px 20px;
+        min-width: auto;
     }
 }
 
@@ -716,26 +785,99 @@ body {
     will-change: transform, opacity;
 }
 
-/* Improved mobile responsiveness */
 @media (max-width: 480px) {
-    .name {
-        font-size: 2rem;
-    }
-    
     .container {
         padding: 10px;
     }
     
-    .section {
-        padding: 20px 15px;
+    .name {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
     }
     
-    .tech-grid {
-        justify-content: center;
+    .title {
+        font-size: 1.3rem;
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+    }
+    
+    .header {
+        padding: 25px 15px;
+    }
+    
+    .section {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+    
+    .section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .nav-link {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .project-type, .project-duration, .project-team {
+        font-size: 0.8rem;
+        padding: 5px 10px;
     }
     
     .results-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .result-item {
+        padding: 12px;
+    }
+    
+    .result-number {
+        font-size: 1.8rem;
+    }
+    
+    .result-label {
+        font-size: 0.8rem;
+    }
+    
+    .tech-item {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    
+    .contact-item {
+        padding: 20px 15px;
+    }
+    
+    .contact-item h3 {
+        font-size: 1rem;
+    }
+    
+    .contact-item p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile-first touch improvements */
+.nav-link, .contact-item, .skill-item, .project-item {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    touch-action: manipulation;
+}
+
+/* Improved mobile scrolling */
+body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+}
+
+/* Mobile viewport fix */
+@media screen and (max-width: 768px) {
+    .container {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 }
 
