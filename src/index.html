@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edith Wendy Sosu - DevOps Engineer</title>
+    <meta name="description" content="Edith Wendy Sosu - Senior DevOps Engineer specializing in cloud infrastructure, CI/CD pipelines, and automation. 5+ years experience with AWS, Docker, Kubernetes.">
+    <meta name="keywords" content="DevOps, AWS, Docker, Kubernetes, CI/CD, Infrastructure as Code, Terraform">
+    <meta name="author" content="Edith Wendy Sosu">
+    <title>Edith Wendy Sosu - DevOps Engineer | Portfolio</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <div class="container">
@@ -228,5 +233,39 @@
             </div>
         </section>
     </div>
+    
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
