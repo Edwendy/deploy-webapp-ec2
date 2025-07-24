@@ -38,8 +38,10 @@ jobs:
             sudo systemctl daemon-reload
             sudo systemctl start apache2
             sudo systemctl enable apache2
-            cd home
             # Remove existing contents of /var/www/html
             sudo rm -rf /var/www/html/*
-            # Move new files to /var/www/html
-            sudo mv * /var/www/html
+            # Copy new files to /var/www/html
+            sudo cp -r home/* /var/www/html/
+            # Set proper permissions
+            sudo chown -R www-data:www-data /var/www/html
+            sudo chmod -R 755 /var/www/html
