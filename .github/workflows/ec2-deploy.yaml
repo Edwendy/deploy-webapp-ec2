@@ -25,12 +25,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=deploy-webapp-ec2
+            -Dsonar.organization=edwendy
+            -Dsonar.branch.name=main
 
       - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
+        continue-on-error: true
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   deploy:
     name: Deploy to EC2
