@@ -89,3 +89,4 @@ jobs:
           sleep 30
           curl -f http://${{ secrets.HOST_DNS }} || exit 1
           echo "Deployment successful!"
+          ###
