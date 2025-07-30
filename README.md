@@ -25,7 +25,8 @@
 ## 🔧 DevOps Features
 
 ### 🚀 CI/CD Pipeline
-- **Automated Deployment**: GitHub Actions triggers on push to main branch
+- **Smart Triggers**: Automated deployment on code changes to src/, assets/, package.json, or workflows
+- **Manual Deployment**: workflow_dispatch for on-demand deployments
 - **Security Scanning**: SonarQube code quality analysis and Snyk vulnerability scanning
 - **Infrastructure Provisioning**: Automated Apache web server setup
 - **Configuration Management**: Automated file deployment and permissions
@@ -72,14 +73,16 @@ name: Deploy App to EC2
 on:
   push:
     branches: [main]
+    paths: ['src/**', 'assets/**', 'package.json', '.github/workflows/**']
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  sonarqube:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-      - name: Deploy to EC2
-      - name: Configure Infrastructure
+  snyk:
+    runs-on: ubuntu-latest
+  deploy:
+    needs: [sonarqube, snyk]
 ```
 
 ### Pipeline Stages
@@ -127,10 +130,10 @@ TARGET_DIR      # Deployment directory (e.g., home)
 
 ### Deployment Process
 
-1. **Automatic Deployment**
+1. **Automatic Deployment** (triggers on relevant file changes)
    ```bash
-   git add .
-   git commit -m "Update portfolio"
+   git add src/ assets/ package.json
+   git commit -m "Update application"
    git push origin main
    ```
 
@@ -144,11 +147,12 @@ TARGET_DIR      # Deployment directory (e.g., home)
 ```mermaid
 graph LR
     A[Push to main] --> B[GitHub Actions]
-    B --> C[Checkout Code]
-    C --> D[Deploy to EC2]
-    D --> E[Install Apache]
-    E --> F[Copy Files]
-    F --> G[Set Permissions]
+    B --> C[SonarQube Scan]
+    B --> D[Snyk Security Scan]
+    C --> E[Deploy to EC2]
+    D --> E
+    E --> F[Configure Apache]
+    F --> G[Verify Deployment]
     G --> H[Live Website]
 ```
 
