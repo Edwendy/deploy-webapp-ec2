@@ -1,0 +1,15 @@
+{
+  "name": "deploy-webapp-ec2",
+  "version": "1.0.0",
+  "description": "DevOps CI/CD Pipeline - AWS EC2 Deployment",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "http-server src -p 8080"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}
