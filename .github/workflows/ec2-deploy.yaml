@@ -9,41 +9,34 @@ on:
 #     EC2_USER: ubuntu
 
 jobs:
-  security-scan:
-    name: Security Analysis
+  sonar:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: SonarQube Analysis
-        uses: sonarsource/sonarqube-scan-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: Set up JDK
+        uses: actions/setup-java@v3
         with:
-          args: >
-            -Dsonar.projectKey=deploy-webapp-ec2
-            -Dsonar.organization=edwendy
-            -Dsonar.branch.name=main
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: SonarQube Quality Gate
-        uses: sonarsource/sonarqube-quality-gate-action@v1
-        timeout-minutes: 5
-        continue-on-error: true
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: Install Sonar Scanner
+        run: npm install -g sonarqube-scanner
+
+      - name: Run SonarQube Analysis
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=edwendy_deploy-webapp-ec2 \
+            -Dsonar.organization=edwendy \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
 
   deploy:
     name: Deploy to EC2
     runs-on: ubuntu-latest
     environment: prod
-    needs: security-scan
+    needs: sonar
     
     steps:
       - name: Checkout Code
