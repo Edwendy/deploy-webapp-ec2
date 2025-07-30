@@ -1,11 +1,15 @@
-name: Build
+name: Deploy App to EC2
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**'
+      - 'assets/**'
+      - 'package.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
 # env:
 #     TARGET: home
 #     EC2_USER: ubuntu
