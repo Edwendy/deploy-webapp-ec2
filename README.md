@@ -2,6 +2,8 @@
 
 [![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white)](https://aws.amazon.com/ec2/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=for-the-badge&logo=sonarqube&logoColor=white)](https://www.sonarqube.org/)
+[![Snyk](https://img.shields.io/badge/Snyk-4C4A73?style=for-the-badge&logo=snyk&logoColor=white)](https://snyk.io/)
 [![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white)](https://httpd.apache.org/)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/)
 [![SSH](https://img.shields.io/badge/SSH-4D4D4D?style=for-the-badge&logo=openssh&logoColor=white)](https://www.openssh.com/)
@@ -24,6 +26,7 @@
 
 ### 🚀 CI/CD Pipeline
 - **Automated Deployment**: GitHub Actions triggers on push to main branch
+- **Security Scanning**: SonarQube code quality analysis and Snyk vulnerability scanning
 - **Infrastructure Provisioning**: Automated Apache web server setup
 - **Configuration Management**: Automated file deployment and permissions
 - **Zero-Downtime Strategy**: Atomic file replacement during deployment
@@ -82,7 +85,7 @@ jobs:
 ### Pipeline Stages
 
 1. **Source Control**: Code checkout from GitHub repository
-2. **Build**: No build step required for static assets
+2. **Security Analysis**: SonarQube code quality and Snyk vulnerability scans
 3. **Deploy**: SSH-based file transfer to EC2 instance
 4. **Configure**: Apache installation and configuration
 5. **Verify**: Service health checks and permissions
@@ -112,6 +115,8 @@ Navigate to your repository → Settings → Secrets and variables → Actions
 ```
 EC2_SSH_KEY     # Private SSH key for EC2 access
 HOST_DNS        # EC2 instance public DNS or IP
+SONAR_TOKEN     # SonarQube authentication token
+SNYK_TOKEN      # Snyk authentication token
 ```
 
 **Required Variables:**
